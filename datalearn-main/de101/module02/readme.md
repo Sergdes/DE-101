@@ -12,7 +12,7 @@
 # 3. SQL-запросы к базе данных
 Ниже приведены примеры моих SQL-запросов к базе данных
 ## 3.1. Ежемесячные продажи по сегментам
-
+```sql
 select extract(year from order_date) as year,
  extract(month from order_date) as month,
  segment,
@@ -20,5 +20,5 @@ select extract(year from order_date) as year,
 from orders
 group by year, month, segment
 order by 1, 2, 3;
-
+```
 ![Результат](images/2023-07-07_19-54-21.png)
