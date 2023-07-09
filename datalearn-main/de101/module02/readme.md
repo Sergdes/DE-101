@@ -88,4 +88,19 @@ order by year;--, month;
 
 Если раскрыть комментарии (убрать "--" в SQL запросе), можно просмотреть динамику по месяцам.
 
-
+## 3.6 Продажа и прибыль региональных менеджеров
+```sql
+SELECT
+    p.person as Person,
+    round(sum(sales), 2) as Sales,
+    round(sum(Profit), 2) as  Profit
+FROM
+    public.orders AS o
+LEFT JOIN
+    public.people  AS p ON o.region = p.region
+GROUP BY
+     Person
+ORDER BY
+    Sales;
+```
+![Результат](images/3_6.png)
