@@ -32,8 +32,8 @@ SELECT
     COUNT(*) AS total_orders,
     COUNT(r.returned) AS returned_orders,
     COUNT(o.order_id) - COUNT(r.returned) AS non_returned_orders,
-    ROUND((COUNT(r.returned) * 100)/(COUNT(o.order_id)), 2) AS returned_percentage,
-    ROUND(((COUNT(*) - COUNT(r.returned)) * 100 / COUNT(*)) , 2) AS non_returned_percentage
+    ROUND((COUNT(r.returned)::numeric/COUNT(*) * 100), 2)  AS   returned_percentage,
+    ROUND(((COUNT(*) - COUNT(r.returned))::numeric/ COUNT(*)) * 100  , 2) AS non_returned_percentage
 FROM
     public.orders AS o
 LEFT JOIN
@@ -43,4 +43,20 @@ GROUP BY
 ORDER BY
     o.state;
 ``` 
-##### Если не объявлять тип данных, результатом для процентов будет либо 0 либо 100. Решить можно как у меня  указать корректный тип данных, либо сначала умножить на 100 а потом только делить (в этом случае округление не потребуется).
+![Результат](images/3_2.png)
+
+##### Если не объявлять тип данных, результатом для процентов будет либо 0 либо 100. Решить можно как у меня, указав корректный тип данных, либо сначала умножить на 100.00, а потом только делить.
+
+## 3.2 Процент возвращенных заказов
+```sql
+SELECT
+    count(*) as Total,
+    ROUND((COUNT(r.returned)::numeric / COUNT(*)) * 100, 2) AS returned_percentage,
+    ROUND(((COUNT(*) - COUNT(r.returned))::numeric / COUNT(*)) * 100, 2) AS non_returned_percentage
+FROM
+    public.orders AS o
+left JOIN
+    public."returns" AS r ON o.order_id = r.order_id
+```
+
+![Результат](images/3_3.png)
