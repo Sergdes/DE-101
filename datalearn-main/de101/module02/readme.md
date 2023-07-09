@@ -24,9 +24,8 @@ order by year, month, segment;
 ```
 ![Результат](images/2023-07-07_19-54-21.png)
 
-## 3.2. Ежемесячные продажи по сегментам
-
-```sql
+## 3.2. Продажи и возвращенные  и не возвращенные товары по штатам
+```sql 
 SELECT
     o.state,
     COUNT(*) AS total_orders,
@@ -47,10 +46,10 @@ ORDER BY
 
 ##### Если не объявлять тип данных, результатом для процентов будет либо 0 либо 100. Решить можно как у меня, указав корректный тип данных, либо сначала умножить на 100.00, а потом только делить.
 
-## 3.2 Процент возвращенных заказов
+## 3.3 Процент возвращенных заказов
 ```sql
 SELECT
-    count(*) as Total,
+    --count(*) as Total,
     ROUND((COUNT(r.returned)::numeric / COUNT(*)) * 100, 2) AS returned_percentage,
     ROUND(((COUNT(*) - COUNT(r.returned))::numeric / COUNT(*)) * 100, 2) AS non_returned_percentage
 FROM
@@ -60,3 +59,33 @@ left JOIN
 ```
 
 ![Результат](images/3_3.png)
+
+## 3.4 Процент продаж по регионам
+```sql
+SELECT
+    region,
+    ROUND ((sum(sales)/(select sum(sales) from public.orders)) * 100, 2) AS region_sales
+    FROM
+    public.orders 
+group by region
+order by region;
+```
+![Результат](images/3_4.png)
+
+## 3.5 Динамика продаж по чегментам
+```sql
+select
+extract(year from order_date) as year,
+--extract(month from order_date) as month,
+round(SUM(CASE WHEN segment = 'Consumer' THEN sales ELSE 0 END), 2) as Consumer,
+round(SUM(CASE WHEN segment = 'Corporate' THEN sales ELSE 0 END), 2) as Corporate,
+round(SUM(CASE WHEN segment = 'Home Office' THEN sales ELSE 0 END), 2) as Home_Office
+from orders
+group by year--, month
+order by year;--, month;
+```
+![Результат](images/3_5.png)
+
+Если раскрыть комментарии (убрать "--" в SQL запросе), можно просмотреть динамику по месяцам
+
+
