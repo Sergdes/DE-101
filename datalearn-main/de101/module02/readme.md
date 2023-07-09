@@ -11,6 +11,7 @@
 Ниже мое решение:
 # 3. SQL-запросы к базе данных
 Ниже приведены примеры моих SQL-запросов к базе данных
+
 ## 3.1. Ежемесячные продажи по сегментам
 ```sql
 select extract(year from order_date) as year,
@@ -19,6 +20,27 @@ select extract(year from order_date) as year,
  round(sum(sales), 2) as monthly_sales
 from orders
 group by year, month, segment
-order by 1, 2, 3;
+order by year, month, segment;
 ```
 ![Результат](images/2023-07-07_19-54-21.png)
+
+## 3.2. Ежемесячные продажи по сегментам
+
+'''SQL
+SELECT
+    o.state,
+    COUNT(*) AS total_orders,
+    COUNT(r.returned) AS returned_orders,
+    COUNT(o.order_id) - COUNT(r.returned) AS non_returned_orders,
+    ROUND((COUNT(r.returned) * 100)/(COUNT(o.order_id)), 2) AS returned_percentage,
+    ROUND(((COUNT(*) - COUNT(r.returned)) * 100 / COUNT(*)) , 2) AS non_returned_percentage
+FROM
+    public.orders AS o
+LEFT JOIN
+    public."returns" AS r ON o.order_id = r.order_id
+GROUP BY
+    o.state
+ORDER BY
+    o.state;
+'''
+#### Если сначала поделить и потом умножить на 100, результатом будет либо 0 либо 100. Решить можно как у меня либо указать корректный тип данных
