@@ -85,6 +85,7 @@ group by year--, month
 order by year;--, month;
 ```
 ![Результат](images/3_5_1.png)
+
 Если раскрыть комментарии (убрать "--" в SQL запросе), можно просмотреть динамику по месяцам.
 
 ## 3.6 Продажа и прибыль региональных менеджеров
@@ -103,3 +104,18 @@ ORDER BY
     Sales;
 ```
 ![Результат](images/3_6.png)
+
+ ## 3.7 Динамика дохода и прибыли
+ 
+ ```sql
+ select
+extract(year from order_date) as year,
+extract(month from order_date) as month,
+round(sum(sales), 2) as Sales,
+round(sum(Profit), 2) as  Profit
+from orders
+group by year, month
+order by year, month;
+ ```
+![Результат](images/3_7.png)
+
