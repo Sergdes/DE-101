@@ -123,6 +123,8 @@ order by year, month;
 ![](images/4_1.png)
 
 ## Физическая схема
+![](images/4_2.png)
+
 Мой [SQL-скрипт ](source/Task4_1.sql) для создания модели данных.
 [SQL-крипт](source/Task4_2.sql)  для наполнения данными.
 
