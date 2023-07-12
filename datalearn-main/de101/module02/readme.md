@@ -129,10 +129,11 @@ order by year, month;
 [SQL-крипт](source/Task4_2.sql)  для наполнения данными.
 
 # 5. Подключение к облачной базе данных
-Нашей следующей задачей было создать базу данных на облачном сервере AWS и загрузить наши данные для промежуточного уровня и размерную модель для бизнес-уровня. Были сложности при [создании учетной записи в AWS] (https://github.com/Data-Learn/data-engineering/blob/master/how-to/How%20to%20create%20AWS%20Account.md), но могала эта [статья] (https://conff.org/guides/1934-account-registration-aws-russia.html). Для создания базы данных в облаке я использовал эту [инструкцию] (https://github.com/Data-Learn/data-engineering/blob/master/how-to/how_to_amazon_rds.md), а для загрузки SQL-файлы, подготовленные автором курса.
+Нашей следующей задачей было создать базу данных на облачном сервере AWS и загрузить наши данные для промежуточного уровня и размерную модель для бизнес-уровня. Были сложности при [создании учетной записи в AWS](https://github.com/Data-Learn/data-engineering/blob/master/how-to/How%20to%20create%20AWS%20Account.md), но могала эта [статья] (https://conff.org/guides/1934-account-registration-aws-russia.html). Для создания базы данных в облаке я использовал эту [инструкцию](https://github.com/Data-Learn/data-engineering/blob/master/how-to/how_to_amazon_rds.md), а для загрузки SQL-файлы, подготовленные автором курса.
 
-Промежуточный [stg.orders.sql] (https://github.com/Data-Learn/data-engineering/blob/03f51ea85791fb1d6a86659bba3040db0b98471b/DE-101%20Modules/Module02/DE%20-%20101%20Lab%202.1/stg.orders.sql)
-Бизнес-уровень из [stg_to_dw_sql] (https://githu/b.com/Data-Learn/data-engineering/blob/03f51ea85791fb1d6a86659bba3040db0b98471b/DE-101%20Modules/Module02/DE%20-%20101%20Lab%202.1/from_stg_to_dw.sql)
+Промежуточный [stg.orders.sql](https://github.com/Data-Learn/data-engineering/blob/03f51ea85791fb1d6a86659bba3040db0b98471b/DE-101%20Modules/Module02/DE%20-%20101%20Lab%202.1/stg.orders.sql)
+Бизнес-уровень из [from_stg_to_dw_sql](https://github.com/Data-Learn/data-engineering/blob/03f51ea85791fb1d6a86659bba3040db0b98471b/DE-101%20Modules/Module02/DE%20-%20101%20Lab%202.1/from_stg_to_dw.sql)
+
 
 ## Моя облачная база данных на AWS 
 ![Alt text](images/5_1_aws_datebase.png)
