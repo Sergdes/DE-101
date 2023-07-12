@@ -16,7 +16,7 @@ create schema dw;
 --SHIPPING
 
 --creating a table
-drop table if exists dw.shipping_dim ;
+drop table if exists dw.shipping_dim CASCADE;
 CREATE TABLE dw.shipping_dim
 (
  ship_id       serial NOT NULL,
@@ -38,7 +38,7 @@ select * from dw.shipping_dim sd;
 
 --CUSTOMER
 
-drop table if exists dw.customer_dim ;
+drop table if exists dw.customer_dim CASCADE;
 CREATE TABLE dw.customer_dim
 (
 cust_id serial NOT NULL,
@@ -60,7 +60,7 @@ select * from dw.customer_dim cd;
 
 --GEOGRAPHY
 
-drop table if exists dw.geo_dim ;
+drop table if exists dw.geo_dim CASCADE;
 CREATE TABLE dw.geo_dim
 (
  geo_id      serial NOT NULL,
@@ -100,7 +100,8 @@ where city = 'Burlington'
 --PRODUCT
 
 --creating a table
-drop table if exists dw.product_dim ;
+drop table if exists dw.product_dim cascade;
+
 CREATE TABLE dw.product_dim
 (
  prod_id   serial NOT NULL, --we created surrogated key
@@ -126,7 +127,7 @@ select * from dw.product_dim cd;
 -- examplehttps://tapoueh.org/blog/2017/06/postgresql-and-the-calendar/
 
 --creating a table
-drop table if exists dw.calendar_dim ;
+drop table if exists dw.calendar_dim CASCADE;
 CREATE TABLE dw.calendar_dim
 (
 dateid serial  NOT NULL,
@@ -170,7 +171,7 @@ select * from dw.calendar_dim;
 --METRICS
 
 --creating a table
-drop table if exists dw.sales_fact ;
+drop table if exists dw.sales_fact CASCADE;
 CREATE TABLE dw.sales_fact
 (
  sales_id      serial NOT NULL,

@@ -133,7 +133,7 @@ order by year, month;
 
 Промежуточный [stg.orders.sql](https://github.com/Data-Learn/data-engineering/blob/03f51ea85791fb1d6a86659bba3040db0b98471b/DE-101%20Modules/Module02/DE%20-%20101%20Lab%202.1/stg.orders.sql)
 
-Бизнес-уровень из [from_stg_to_dw_sql](https://github.com/Data-Learn/data-engineering/blob/03f51ea85791fb1d6a86659bba3040db0b98471b/DE-101%20Modules/Module02/DE%20-%20101%20Lab%202.1/from_stg_to_dw.sql)
+Бизнес-уровень из [from_stg_to_dw_sql](source/from_stg_to_dw.sql). В некоторых местах были добавлены ";" для завпуска скрипта целиком.
 
 
 ## Моя облачная база данных на AWS 
@@ -142,5 +142,12 @@ order by year, month;
 ## Обновлена база данных в Dbeaver
 ![Alt text](<images/5_2_Loading data_aws.png>)
 
+# Сервисы визуализации для баз данных
+## Looker Google
+Looker Google не поддерживает PostgreSQL_15 (не удалось подключится), пришлось создать новыю облачную базу данных на PostgreSQL_14.
+
+Вот пример дашборда построеного в Looker Google:
+
+![Alt text](images/5_3_lookestudio.png)
 
 
